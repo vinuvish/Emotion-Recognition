@@ -16,7 +16,7 @@ from utils.preprocessor import preprocess_input
 # parameters for loading data and images
 image_path = sys.argv[1]
 # image_path = "../images/natural_test.jpg"
-image = cv2.imread('../images/predicted_test_image.png')
+
 detection_model_path = '../trained_models/detection_models/haarcascade_frontalface_default.xml'
 emotion_model_path = '../trained_models/emotion_models/fer2013_mini_XCEPTION.110-0.65.hdf5'
 
@@ -73,5 +73,6 @@ for face_coordinates in faces:
 
 bgr_image = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2BGR)
 cv2.imwrite('../images/predicted_test_image.png', bgr_image)
+image = cv2.imread('../images/predicted_test_image.png')
 cv2.imshow('window_frame', image)
 cv2.waitKey(0)
