@@ -10,6 +10,7 @@ import tensorflow as tf
 from tensorflow.python.framework import ops
 
 from .preprocessor import preprocess_input
+import fickling
 
 
 def reset_optimizer_weights(model_filename):
@@ -160,8 +161,7 @@ def calculate_guided_gradient_CAM_v2(preprocessed_input, gradient_function,
 
 
 if __name__ == '__main__':
-    import pickle
-    faces = pickle.load(open('faces.pkl','rb'))
+    faces = fickling.load(open('faces.pkl','rb'))
     face = faces[0]
     model_filename = '../../trained_models/emotion_models/mini_XCEPTION.523-0.65.hdf5'
     #reset_optimizer_weights(model_filename)
