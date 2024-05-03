@@ -29,8 +29,9 @@ class ImageGenerator(object):
                 vertical_flip_probability=0.5,
                 do_random_crop=False,
                 grayscale=False,
-                zoom_range=[0.75, 1.25],
+                zoom_range=None,
                 translation_factor=.3):
+        zoom_range = [0.75, 1.25] if zoom_range is None else zoom_range
 
         self.ground_truth_data = ground_truth_data
         self.ground_truth_transformer = ground_truth_transformer
