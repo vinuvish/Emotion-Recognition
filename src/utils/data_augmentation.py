@@ -1,11 +1,11 @@
 import numpy as np
-from random import shuffle
 from .preprocessor import preprocess_input
 from .preprocessor import _imread as imread
 from .preprocessor import _imresize as imresize
 from .preprocessor import to_categorical
 import scipy.ndimage as ndi
 import cv2
+import secrets
 
 class ImageGenerator(object):
     """ Image generator with saturation, brightness, lighting, contrast,
@@ -149,7 +149,7 @@ class ImageGenerator(object):
         return image_array, box_corners
 
     def transform(self, image_array, box_corners=None):
-        shuffle(self.color_jitter)
+        secrets.SystemRandom().shuffle(self.color_jitter)
         for jitter in self.color_jitter:
             image_array = jitter(image_array)
 
@@ -171,10 +171,10 @@ class ImageGenerator(object):
     def flow(self, mode='train'):
             while True:
                 if mode =='train':
-                    shuffle(self.train_keys)
+                    secrets.SystemRandom().shuffle(self.train_keys)
                     keys = self.train_keys
                 elif mode == 'val' or  mode == 'demo':
-                    shuffle(self.validation_keys)
+                    secrets.SystemRandom().shuffle(self.validation_keys)
                     keys = self.validation_keys
                 else:
                     raise Exception('invalid mode: %s' % mode)
